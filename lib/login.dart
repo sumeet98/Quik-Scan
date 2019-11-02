@@ -41,10 +41,11 @@ class _LoginState extends State<Login> {
         title: Text("Welcome To Quik Scan", 
         style: TextStyle(
           fontWeight: FontWeight.w800,
-          color: Colors.lightBlue,
+          color: Colors.white,
         ),
         ),
       ), 
+      backgroundColor: Colors.indigo,
       body: Center(
             child: _isLoggedIn
                 ? Column(
@@ -59,7 +60,8 @@ class _LoginState extends State<Login> {
                   )
                 : Center(
                     child: OutlineButton(
-                      child: Text("Login with Google"),
+                      child: Text("Login with Google",),
+                      textColor: Colors.white,
                       onPressed: () {
                         _login();
                       },
