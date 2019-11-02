@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "894509445935",
+    "firebase_url": "https://quik-scan.firebaseio.com",
+    "project_id": "quik-scan",
+    "storage_bucket": "quik-scan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894509445935:android:29166a42c3675c8a72a7da",
+        "android_client_info": {
+          "package_name": "com.sumeet.quikscan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894509445935-kpbna813hrrlmcd23bqa3ji05vs2j4cd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sumeet.quikscan",
+            "certificate_hash": "093d28de1a41e845ed35567bc76064a1f2111589"
+          }
+        },
+        {
+          "client_id": "894509445935-jdrhtsu3v0uh2dn59ssnmls2b86l85rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMu---VjhKD36RhSk2uBezFj0A5MpgKiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894509445935-jdrhtsu3v0uh2dn59ssnmls2b86l85rj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
