@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'main.dart';
+import 'main_menu.dart';
 
 class Login extends StatefulWidget {
   Login({Key key, this.title}) : super(key: key);
@@ -33,6 +35,7 @@ class _LoginState extends State<Login> {
     });
   }
 
+/*
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -50,12 +53,14 @@ class _LoginState extends State<Login> {
       style: optionStyle,
     ),
   ];
+  
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -89,18 +94,124 @@ class _LoginState extends State<Login> {
                   )
                 ],
               )
-            : Center(
-                child: OutlineButton(
-                  child: Text(
-                    "Login with Google",
-                  ),
-                  textColor: Colors.white,
-                  onPressed: () {
-                    _login();
-                  },
-                ),
+            : Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+
+              Padding( 
+               padding: EdgeInsets.all(20), 
               ),
-      ),
+
+              Image.network( 
+                'https://cdn2.iconfinder.com/data/icons/antivirus-internet-security/33/quick_scan-512.png',
+                height: 100, 
+                width: 200,
+              ),
+
+              Padding( 
+               padding: EdgeInsets.all(80), 
+              ),
+
+              new Container( 
+                child: new TextFormField(  
+                  style: new TextStyle(  
+                    color: Colors.white, 
+                  ), 
+                  decoration: InputDecoration( 
+                  labelText: 'E-Mail',
+                  hintText: 'someone@example.com',
+                  ),
+                ),
+                decoration: new BoxDecoration(  
+                  borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+                  color: Colors.white,
+                ),
+               // padding: new EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              ),
+
+              Padding( 
+               padding: EdgeInsets.all(8), 
+              ),
+
+              new Container( 
+                child: new TextFormField( 
+                  obscureText: true, 
+                  style: new TextStyle(  
+                    color: Colors.white, 
+                  ), 
+                  decoration: InputDecoration( 
+                  labelText: 'Password',
+                  ),
+                ),
+                decoration: new BoxDecoration(  
+                  borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
+                  color: Colors.white,
+                ),
+               // padding: new EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              ),
+
+            Padding( 
+              padding: EdgeInsets.all(10),
+            ),
+
+            FlatButton(
+              shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(18.0),
+              side: BorderSide(color: Colors.white)),
+              color: Colors.indigo,
+              textColor: Colors.white,
+              padding: EdgeInsets.fromLTRB(107, 15, 107, 15),
+              onPressed: () {
+                
+              },
+              child: Text(
+                "Login".toUpperCase(),
+                style: TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
+          ),
+
+          Padding( 
+            padding: EdgeInsets.all(10),
+          ),
+
+          Text( 
+              "------------ or ------------",
+               style: TextStyle(  
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                )
+              ),
+
+          Padding( 
+            padding: EdgeInsets.all(10),
+          ),
+
+        new Container( 
+          color: Colors.white,
+          child: GestureDetector(
+          onTap: () {
+          print("Login with google tapped");
+          _login();
+          },
+          child: Image.network( 
+            'https://www.c-learning.net/storage/app/media/img/buttons/google-login-button.png',
+            width: 200,
+          ),
+        ),
+        ), 
+
+          
+
+                ]
+                ),
+                
+              ),
+    
+      );
+      /*
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -120,6 +231,6 @@ class _LoginState extends State<Login> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-    );
+      */
   }
 }

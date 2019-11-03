@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'main_menu.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 void main() => runApp(MyApp());
@@ -13,7 +14,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: Login(title: 'Welcome to Quik Scan'),
+      home: MainMenu(title: 'Welcome to Quik Scan'),
+      routes: <String, WidgetBuilder>{
+      '/gotoLogin': (BuildContext context) {
+      return Login(title: 'Login');
+      },
+      }
     );
   }
 }
