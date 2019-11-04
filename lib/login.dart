@@ -115,7 +115,7 @@ class _LoginState extends State<Login> {
               new Container( 
                 child: new TextFormField(  
                   style: new TextStyle(  
-                    color: Colors.white, 
+                    color: Colors.indigo, 
                   ), 
                   decoration: InputDecoration( 
                   labelText: 'E-Mail',
@@ -137,7 +137,7 @@ class _LoginState extends State<Login> {
                 child: new TextFormField( 
                   obscureText: true, 
                   style: new TextStyle(  
-                    color: Colors.white, 
+                    color: Colors.indigo, 
                   ), 
                   decoration: InputDecoration( 
                   labelText: 'Password',
