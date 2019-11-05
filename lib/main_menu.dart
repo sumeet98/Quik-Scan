@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'login.dart';
+import 'page1.dart';
 
 class MainMenu extends StatefulWidget {
   MainMenu({Key key, this.title}) : super(key: key);
@@ -72,9 +73,32 @@ class _MainMenuState extends State<MainMenu> {
               color: Colors.indigo,
               textColor: Colors.white,
               padding: EdgeInsets.fromLTRB(100, 15, 100, 15),
-              onPressed: () {},
+              onPressed: () {
+              },
               child: Text(
                 "Sign Up".toUpperCase(),
+                style: TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
+          ),
+
+           Padding( 
+            padding: EdgeInsets.all(10),
+          ),
+
+              FlatButton(
+              shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(18.0),
+              side: BorderSide(color: Colors.white)),
+              color: Colors.indigo,
+              textColor: Colors.white,
+              padding: EdgeInsets.fromLTRB(25, 7, 25, 7),
+              onPressed: () {
+                _page1(context);
+              },
+              child: Text(
+                "Skip".toUpperCase(),
                 style: TextStyle(
                 fontSize: 14.0,
               ),
@@ -92,6 +116,12 @@ class _MainMenuState extends State<MainMenu> {
     Future<void> _Login(BuildContext context) async {
     var event = await Navigator.pushNamed(context, '/gotoLogin');
     print('gotoLogin:');
+    print(event);
+  }
+
+      Future<void> _page1(BuildContext context) async {
+    var event = await Navigator.pushNamed(context, '/gotopage1');
+    print('gotopage1:');
     print(event);
   }
 }
