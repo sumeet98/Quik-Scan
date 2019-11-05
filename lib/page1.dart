@@ -3,17 +3,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'main.dart';
 import 'main_menu.dart';
 
-class page1 extends StatefulWidget {
-  page1({Key key, this.title}) : super(key: key);
+class Page1 extends StatefulWidget {
+  Page1({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _page1State createState() => _page1State();
+  _Page1State createState() => _Page1State();
 
 }
 
-class _page1State extends State<page1> {
+class _Page1State extends State<Page1> {
 
 
   int _selectedIndex = 0;

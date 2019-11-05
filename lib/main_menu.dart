@@ -83,27 +83,6 @@ class _MainMenuState extends State<MainMenu> {
             ),
           ),
 
-           Padding( 
-            padding: EdgeInsets.all(10),
-          ),
-
-              FlatButton(
-              shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(18.0),
-              side: BorderSide(color: Colors.white)),
-              color: Colors.indigo,
-              textColor: Colors.white,
-              padding: EdgeInsets.fromLTRB(25, 7, 25, 7),
-              onPressed: () {
-                _page1(context);
-              },
-              child: Text(
-                "Skip".toUpperCase(),
-                style: TextStyle(
-                fontSize: 14.0,
-              ),
-            ),
-          ),
 
 
         ],
@@ -119,7 +98,7 @@ class _MainMenuState extends State<MainMenu> {
     print(event);
   }
 
-      Future<void> _page1(BuildContext context) async {
+    Future<void> _Page1(BuildContext context) async {
     var event = await Navigator.pushNamed(context, '/gotopage1');
     print('gotopage1:');
     print(event);

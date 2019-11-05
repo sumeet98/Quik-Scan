@@ -3,6 +3,8 @@ import 'login.dart';
 import 'main_menu.dart';
 import 'page1.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       return Login(title: 'Login');
       },
       '/gotopage1': (BuildContext context){
-        return page1(title:'Page1');
+        return Page1(title:'Page1');
       }
       }
     );

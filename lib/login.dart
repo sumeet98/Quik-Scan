@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'main.dart';
 import 'main_menu.dart';
 import 'page1.dart';
@@ -14,54 +15,39 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool _isLoggedIn = false;
 
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+final FirebaseAuth _auth = FirebaseAuth.instance;
+final GoogleSignIn googleSignIn = GoogleSignIn();
 
-  _login() async {
-    try {
-      await _googleSignIn.signIn();
-      setState(() {
-        _isLoggedIn = true;
-      });
-    } catch (err) {
-      print(err);
-    }
-  }
+Future<String> signInWithGoogle() async {
+  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+  final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
 
-  _logout() {
-    _googleSignIn.signOut();
-    setState(() {
-      _isLoggedIn = false;
-    });
-  }
+  final AuthCredential credential = GoogleAuthProvider.getCredential(
+    accessToken: googleSignInAuthentication.accessToken,
+    idToken: googleSignInAuthentication.idToken,
+  );
 
-/*
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Scanner',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Recent Scans',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Settings',
-      style: optionStyle,
-    ),
-  ];
-  
+  final FirebaseUser user = await _auth.signInWithCredential(credential);
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-  */
+  assert(user.email != null);
+  assert(user.displayName != null);
+  assert(!user.isAnonymous);
+  assert(await user.getIdToken() != null);
+
+  final FirebaseUser currentUser = await _auth.currentUser();
+  assert(user.uid == currentUser.uid);
+
+  return 'signInWithGoogle succeeded: $user';
+}
+
+void signOutGoogle() async{
+  await googleSignIn.signOut();
+
+  print("User Sign Out");
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,25 +63,7 @@ class _LoginState extends State<Login> {
       ),
       backgroundColor: Colors.indigo,
       body: Center(
-        child: _isLoggedIn
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.network(
-                    _googleSignIn.currentUser.photoUrl,
-                    height: 50.0,
-                    width: 50.0,
-                  ),
-                  Text(_googleSignIn.currentUser.displayName),
-                  OutlineButton(
-                    child: Text("Logout"),
-                    onPressed: () {
-                      _logout();
-                    },
-                  )
-                ],
-              )
-            : Column(
+        child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
 
@@ -127,7 +95,6 @@ class _LoginState extends State<Login> {
                   borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
                   color: Colors.white,
                 ),
-               // padding: new EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
               ),
 
               Padding( 
@@ -148,7 +115,6 @@ class _LoginState extends State<Login> {
                   borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
                   color: Colors.white,
                 ),
-               // padding: new EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
               ),
 
             Padding( 
@@ -195,43 +161,32 @@ class _LoginState extends State<Login> {
           child: GestureDetector(
           onTap: () {
           print("Login with google tapped");
-          _login();
-          },
+          signInWithGoogle().whenComplete(() {
+    signInWithGoogle().whenComplete(() {
+        _Page1(context);
+    }
+    );
+          });
+  },
+      
+        
+                
           child: Image.network( 
             'https://www.c-learning.net/storage/app/media/img/buttons/google-login-button.png',
             width: 200,
           ),
-        ),
-        ), 
-
-          
-
-                ]
+          )
+        )]
+          )
                 ),
-                
-              ),
+                      );
+
     
-      );
-      /*
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt),
-            title: Text('Scanner'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            title: Text('Recent Scans'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Settings'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
-      */
   }
-}
+      Future<void> _Page1(BuildContext context) async {
+      var event = await Navigator.pushNamed(context, '/gotopage1');
+      print('gotopage1:');
+      print(event);
+  }
+          }
+  
