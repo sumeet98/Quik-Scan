@@ -83,6 +83,28 @@ class _MainMenuState extends State<MainMenu> {
             ),
           ),
 
+            Padding( 
+            padding: EdgeInsets.all(10),
+          ),
+
+            FlatButton(
+              shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(18.0),
+              side: BorderSide(color: Colors.white)),
+              color: Colors.indigo,
+              textColor: Colors.white,
+              padding: EdgeInsets.fromLTRB(25, 7, 25, 7),
+              onPressed: () {
+                _Page1(context);
+              },
+              child: Text(
+                "Skip".toUpperCase(),
+                style: TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
+          ),
+
 
 
         ],
