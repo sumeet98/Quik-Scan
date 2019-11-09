@@ -2,44 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'main.dart';
 import 'main_menu.dart';
+import 'login.dart';
 
-class Page1 extends StatefulWidget {
-  Page1({Key key, this.title}) : super(key: key);
+class Page1 extends StatelessWidget {
+  final User user;
+  
+  Page1({Key key, @required this.user}) : super(key: key);
+  
+//   @override
+//   _Page1State createState() => _Page1State();
 
-  final String title;
+// }
 
-  @override
-  _Page1State createState() => _Page1State();
-
-}
-
-class _Page1State extends State<Page1> {
-
-
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Scanner',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Recent Scans',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Settings',
-      style: optionStyle,
-    ),
-  ];
+// class _Page1State extends State<Page1> { 
+  
+  // int _selectedIndex = 0;
+  // static const TextStyle optionStyle =
+  //     TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  // static const List<Widget> _widgetOptions = <Widget>[
+  //   Text(
+  //     'Index 0: Scanner',
+  //     style: optionStyle,
+  //   ),
+  //   Text(
+  //     'Index 1: Recent Scans',
+  //     style: optionStyle,
+  //   ),
+  //   Text(
+  //     'Index 2: Settings',
+  //     style: optionStyle,
+  //   ),
+  // ];
   
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
   
 
   @override
@@ -47,7 +47,7 @@ class _Page1State extends State<Page1> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Welcome To Quik Scan",
+          "Hello ${user.name}",
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.white,
@@ -90,9 +90,9 @@ class _Page1State extends State<Page1> {
             title: Text('Settings'),
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.indigo[800],
-        onTap: _onItemTapped,
+        // currentIndex: _selectedIndex,
+        // selectedItemColor: Colors.indigo[800],
+        // onTap: _onItemTapped,
       )
     );
       

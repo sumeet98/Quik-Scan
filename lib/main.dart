@@ -17,15 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: MainMenu(title: 'Welcome to Quik Scan'),
-      routes: <String, WidgetBuilder>{
-      '/gotoLogin': (BuildContext context) {
-      return Login(title: 'Login');
-      },
-      '/gotopage1': (BuildContext context){
-        return Page1(title:'Page1');
-      }
-      }
+      home: MainMenu(),
     );
   }
 }

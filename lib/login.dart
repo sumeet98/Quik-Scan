@@ -5,21 +5,15 @@ import 'main.dart';
 import 'main_menu.dart';
 import 'page1.dart';
 
-class Login extends StatefulWidget {
-  Login({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
+class Login extends StatelessWidget {
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
+String userName = " ";
+
 
 Future<String> signInWithGoogle() async {
+  print("test");
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication =
       await googleSignInAccount.authentication;
@@ -38,6 +32,8 @@ Future<String> signInWithGoogle() async {
 
   final FirebaseUser currentUser = await _auth.currentUser();
   assert(user.uid == currentUser.uid);
+  print(currentUser);
+  userName = user.displayName;
 
   return 'signInWithGoogle succeeded: $user';
 }
@@ -54,7 +50,7 @@ void signOutGoogle() async{
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Welcome To Quik Scan",
+          "Welcome to Quik Scan",
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.white,
@@ -163,7 +159,7 @@ void signOutGoogle() async{
           print("Login with google tapped");
           signInWithGoogle().whenComplete(() {
     signInWithGoogle().whenComplete(() {
-        _Page1(context);
+          Navigator.push(context, new MaterialPageRoute(builder: (context) => new Page1(user: new User(userName,"link"))));
     }
     );
           });
@@ -183,10 +179,15 @@ void signOutGoogle() async{
 
     
   }
-      Future<void> _Page1(BuildContext context) async {
-      var event = await Navigator.pushNamed(context, '/gotopage1');
-      print('gotopage1:');
-      print(event);
-  }
           }
+
+  
+  class User { 
+    final String name;
+    final String displayPic; 
+
+    User(this.name, this.displayPic); 
+  }
+
+  
   

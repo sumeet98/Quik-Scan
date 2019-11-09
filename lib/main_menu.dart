@@ -3,16 +3,8 @@ import 'main.dart';
 import 'login.dart';
 import 'page1.dart';
 
-class MainMenu extends StatefulWidget {
-  MainMenu({Key key, this.title}) : super(key: key);
+class MainMenu extends StatelessWidget {
 
-  final String title;
-
-  @override
-  _MainMenuState createState() => _MainMenuState();
-}
-
-class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +41,7 @@ class _MainMenuState extends State<MainMenu> {
                   textColor: Colors.white,
                   padding: EdgeInsets.fromLTRB(107, 15, 107, 15),
                   onPressed: () {
-                    _Login(context);
+                    Navigator.push(context, new MaterialPageRoute(builder: (context) => new Login()));
                   },
                   child: Text(
                     "Login".toUpperCase(),
@@ -88,7 +80,7 @@ class _MainMenuState extends State<MainMenu> {
                   textColor: Colors.white,
                   padding: EdgeInsets.fromLTRB(25, 7, 25, 7),
                   onPressed: () {
-                    _page1(context);
+                    Navigator.push(context, new MaterialPageRoute(builder: (context) => new Page1(user: new User("guest", "url"))));
                   },
                   child: Text(
                     "Skip".toUpperCase(),
@@ -105,15 +97,4 @@ class _MainMenuState extends State<MainMenu> {
     );
   }
 
-  Future<void> _Login(BuildContext context) async {
-    var event = await Navigator.pushNamed(context, '/gotoLogin');
-    print('gotoLogin:');
-    print(event);
-  }
-
-  Future<void> _page1(BuildContext context) async {
-    var event = await Navigator.pushNamed(context, '/gotopage1');
-    print('gotopage1:');
-    print(event);
-  }
 }
