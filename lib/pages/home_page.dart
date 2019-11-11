@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quik_scan/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'qr_generator.dart';
 import 'dart:async';
 import 'package:quik_scan/pages/recent_scans.dart';
 import 'package:quik_scan/pages/settings.dart';
@@ -80,8 +81,19 @@ class _HomePageState extends State<HomePage> {
         color: Colors.indigo,
        child: new Text('Logout',
         style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-       onPressed: signOut)
-
+       onPressed: signOut),
+      FlatButton(
+        color: Colors.indigo,
+        child: Text('Generator placeholder'),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (context) => QRGenerator()
+              )
+          );
+        },
+      )
         ],
       ) 
 
