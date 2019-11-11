@@ -1,13 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quik_scan/services/authentication.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:quik_scan/pages/home_page.dart';
 import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:quik_scan/pages/root_page.dart';
 import 'package:quik_scan/main.dart';
 
-class RecentScans extends StatelessWidget {
-  const RecentScans({Key key}) : super(key: key);
+class RecentScans extends StatefulWidget {
+  RecentScans({Key key, this.auth, this.userId, this.logoutCallback})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
+
+  @override
+  State<StatefulWidget> createState() => new _RecentScansState();
+}
+
+  class _RecentScansState extends State<RecentScans> {
+
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+
+  signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +52,13 @@ return Scaffold(
             color: Colors.white,
           ),
         ),
+        actions: <Widget>[
+            new FlatButton(
+                child: new Text('Logout',
+                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+                onPressed: signOut)
+          ],
+        automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white,
       body: Column(

@@ -6,7 +6,7 @@ import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:quik_scan/pages/root_page.dart';
 import 'package:quik_scan/main.dart';
 import 'package:quik_scan/pages/recent_scans.dart';
-import 'package:quik_scan/pages/settings.dart';
+import 'package:quik_scan/pages/about_us.dart';
 
 // class SampleWidget extends StatelessWidget {
 
@@ -47,7 +47,7 @@ class _BottomNavControllerState
     RecentScans(
       key: PageStorageKey('Page2'),
     ),
-    Settings(
+    AboutUs(
       key: PageStorageKey('Page3')
     ),
   ];
@@ -65,7 +65,7 @@ class _BottomNavControllerState
           BottomNavigationBarItem(
               icon: Icon(Icons.list), title: Text('Recent Scans')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text('Settings')),
+              icon: Icon(Icons.settings), title: Text('About Us')),
         ],
       );
 

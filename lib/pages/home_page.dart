@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:quik_scan/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'qr_generator.dart';
+import 'barcode_scanner.dart';
 import 'dart:async';
 import 'package:quik_scan/pages/recent_scans.dart';
-import 'package:quik_scan/pages/settings.dart';
+import 'package:quik_scan/pages/about_us.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -43,45 +44,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body:
-      Column( 
-        children: <Widget>[  
-          Padding(
-            padding: EdgeInsets.all(15),
+      appBar: AppBar(
+        title: Text(
+          "Quik Scan",
+          style: TextStyle(
+            fontWeight: FontWeight.w800,
+            color: Colors.white,
           ),
-        InkWell(
-          // onTap: () => showDialog(  
-          //   context: context, 
-          //   builder: (BuildContext context) { 
-          //     return AlertDialog(  
-          //       title: Text('Options'),
-          //       content: new ListView(
-          //         children: <Widget>[  
-          //           new DropdownButton<String>(  
-          //             items: <String>['Logout'].map((String value) { 
-          //               return new DropdownMenuItem<String>(
-          //                 value: value,
-          //                 child: new Text(value),
-          //               );
-          //             }).toList(), 
-          //             onChanged: (_) {},
-          //           )
-          //         ],
-          //       ) ,
-          //     );
-          //   }
-          // ),
-          child: CircleAvatar(
-          backgroundImage: NetworkImage('https://icon-library.net/images/no-profile-picture-icon/no-profile-picture-icon-13.jpg'),
-          radius: 30,
         ),
+        actions: <Widget>[
+            new FlatButton(
+                child: new Text('Logout',
+                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+                onPressed: signOut)
+          ],
+        automaticallyImplyLeading: false,
       ),
+      body:
 
-      FlatButton(
-        color: Colors.indigo,
-       child: new Text('Logout',
-        style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-       onPressed: signOut),
+      Column(  
+        children: <Widget>[  
+
       FlatButton(
         color: Colors.indigo,
         child: Text('Generator placeholder'),
@@ -93,10 +76,26 @@ class _HomePageState extends State<HomePage> {
               )
           );
         },
+      ), 
+
+      FlatButton(
+        color: Colors.indigo,
+        child: Text('Barcode placeholder'),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (context) => BarcodeScanner()
+              )
+          );
+        },
       )
+
         ],
       ) 
 
-    );
+      ); 
+
+    
   }
 }

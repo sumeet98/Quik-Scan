@@ -5,21 +5,60 @@ import 'package:quik_scan/pages/home_page.dart';
 import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:quik_scan/pages/root_page.dart';
 import 'package:quik_scan/main.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({Key key}) : super(key: key);
+class AboutUs extends StatefulWidget {
+  AboutUs({Key key, this.auth, this.userId, this.logoutCallback})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
+
+  @override
+  State<StatefulWidget> createState() => new _AboutUsState();
+}
+
+  class _AboutUsState extends State<AboutUs> {
+
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+
+  signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Settings",
+          "About Us",
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.white,
           ),
         ),
+        actions: <Widget>[
+            new FlatButton(
+                child: new Text('Logout',
+                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+                onPressed: signOut)
+          ],
+        automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white,
       body: Column(

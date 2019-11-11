@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:quik_scan/services/authentication.dart';
 import 'package:quik_scan/pages/home_page.dart';
+import 'package:quik_scan/services/bottomNavController.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
