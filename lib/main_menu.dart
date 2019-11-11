@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'login.dart';
 import 'page1.dart';
+import 'bottomNav.dart';
+import 'page2.dart';
+import 'page3.dart';
 
 class MainMenu extends StatelessWidget {
 
@@ -80,7 +83,7 @@ class MainMenu extends StatelessWidget {
                   textColor: Colors.white,
                   padding: EdgeInsets.fromLTRB(25, 7, 25, 7),
                   onPressed: () {
-                    Navigator.push(context, new MaterialPageRoute(builder: (context) => new Page1(user: new User("guest", "url"))));
+                    Navigator.push(context, new MaterialPageRoute(builder: (context) => new bottomNav(user: new User("guest", "url"))));
                   },
                   child: Text(
                     "Skip".toUpperCase(),

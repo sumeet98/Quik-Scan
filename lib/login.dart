@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quik_scan/bottomNav.dart';
 import 'main.dart';
 import 'main_menu.dart';
 import 'page1.dart';
+import 'bottomNav.dart';
+import 'page2.dart';
+import 'page3.dart';
 
 class Login extends StatelessWidget {
 
@@ -159,7 +163,7 @@ void signOutGoogle() async{
           print("Login with google tapped");
           signInWithGoogle().whenComplete(() {
     signInWithGoogle().whenComplete(() {
-          Navigator.push(context, new MaterialPageRoute(builder: (context) => new Page1(user: new User(userName,"link"))));
+          Navigator.push(context, new MaterialPageRoute(builder: (context) => new bottomNav(user: new User(userName,"link"))));
     }
     );
           });
