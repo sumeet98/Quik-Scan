@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quik_scan/services/authentication.dart';
+import 'package:quik_scan/services/bottomNavController.dart';
+import 'package:quik_scan/pages/recent_scans.dart';
+import 'package:quik_scan/pages/settings.dart';
 
 class LoginSignupPage extends StatefulWidget {
   LoginSignupPage({this.auth, this.loginCallback});
@@ -43,6 +46,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         if (_isLoginForm) {
           userId = await widget.auth.signIn(_email, _password);
           print('Signed in: $userId');
+         Navigator.push(context,MaterialPageRoute(builder: (context) => BottomNavController()));
         } else {
           userId = await widget.auth.signUp(_email, _password);
           //widget.auth.sendEmailVerification();

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quik_scan/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:async';
+import 'package:quik_scan/pages/recent_scans.dart';
+import 'package:quik_scan/pages/settings.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
