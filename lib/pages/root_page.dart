@@ -4,6 +4,7 @@ import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:quik_scan/services/authentication.dart';
 import 'package:quik_scan/pages/home_page.dart';
 import 'package:quik_scan/services/bottomNavController.dart';
+import 'package:quik_scan/services/notifications.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
@@ -23,6 +24,7 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.NOT_DETERMINED;
   String _userId = "";
+  var notifications = Notifications();
 
   @override
   void initState() {
@@ -67,6 +69,7 @@ class _RootPageState extends State<RootPage> {
 
   @override
   Widget build(BuildContext context) {
+    notifications.init();
     switch (authStatus) {
       case AuthStatus.NOT_DETERMINED:
         return buildWaitingScreen();
@@ -79,6 +82,7 @@ class _RootPageState extends State<RootPage> {
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
+          notificationNow();
           return new HomePage(
             userId: _userId,
             auth: widget.auth,
@@ -90,5 +94,9 @@ class _RootPageState extends State<RootPage> {
       default:
         return buildWaitingScreen();
     }
+  }
+
+  void notificationNow() {
+    notifications.sendNotificationsNow('Upgrade to Premium', 'Two weeks left in free trial.', 'payload');
   }
 }

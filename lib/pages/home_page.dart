@@ -82,12 +82,12 @@ class _HomePageState extends State<HomePage> {
         color: Colors.indigo,
         child: Text('Barcode placeholder'),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context) => BarcodeScanner()
-              )
-          );
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //     builder: (context) => BarcodeScanner()
+          //     )
+          // );
         },
       )
 
