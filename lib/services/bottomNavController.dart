@@ -65,7 +65,7 @@ class _BottomNavControllerState
           BottomNavigationBarItem(
               icon: Icon(Icons.list), title: Text('Recent Scans')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text('About Us')),
+              icon: Icon(Icons.account_box), title: Text('About Us')),
         ],
       );
 

@@ -61,25 +61,34 @@ return Scaffold(
         automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white,
-      body: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-
-              Padding( 
-               padding: EdgeInsets.all(20), 
-              ),
-
-              Image.network( 
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXiHRYTHatSdMe0hyLbo4QJc9pr0b_QB0T6bOCNn59_ucYR-jN&s',
-                height: 200, 
-                width: 500,
-              ),
-
-              Padding( 
-               padding: EdgeInsets.all(80), 
-              ),
-                ]
-                ),
+      body: ListView(
+        children: <Widget>[  
+          ListTile( 
+            title: Text('Developers', textScaleFactor: 3, textAlign: TextAlign.center,),
+            subtitle: Text('', textAlign: TextAlign.right,),
+          ),
+          ListTile( 
+            title: Text('Brandon Campbell', textScaleFactor: 2, textAlign: TextAlign.justify,),
+            subtitle: Text('100555879', textAlign: TextAlign.right,),
+          ),
+          ListTile( 
+            title: Text('Gage Adam', textScaleFactor: 2, textAlign: TextAlign.justify,),
+            subtitle: Text('idk yet', textAlign: TextAlign.right,),
+          ),
+          ListTile( 
+            title: Text('Liangyu Zhao', textScaleFactor: 2, textAlign: TextAlign.justify,),
+            subtitle: Text('idk yet', textAlign: TextAlign.right,),
+          ),
+          ListTile( 
+            title: Text('Sumeet Dhillon', textScaleFactor: 2, textAlign: TextAlign.justify,),
+            subtitle: Text('100615629', textAlign: TextAlign.right,),
+          ),
+          ListTile( 
+            title: Text('Zain Ansari', textScaleFactor: 2, textAlign: TextAlign.justify,),
+            subtitle: Text('100586120', textAlign: TextAlign.right,),
+          ),
+        ], 
+      ),
     );
   }
 }
