@@ -6,6 +6,7 @@ import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:quik_scan/pages/root_page.dart';
 import 'package:quik_scan/main.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'dart:io';
 
 class AboutUs extends StatefulWidget {
   AboutUs({Key key, this.auth, this.userId, this.logoutCallback})
@@ -33,12 +34,7 @@ class AboutUs extends StatefulWidget {
 
 
   signOut() async {
-    try {
-      await widget.auth.signOut();
-      widget.logoutCallback();
-    } catch (e) {
-      print(e);
-    }
+   exit(0);
   }
 
   @override

@@ -6,6 +6,7 @@ import 'package:quik_scan/pages/home_page.dart';
 import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:quik_scan/pages/root_page.dart';
 import 'package:quik_scan/main.dart';
+import 'dart:io';
 
 class RecentScans extends StatefulWidget {
   RecentScans({Key key, this.auth, this.userId, this.logoutCallback})
@@ -33,12 +34,7 @@ class RecentScans extends StatefulWidget {
 
 
   signOut() async {
-    try {
-      await widget.auth.signOut();
-      widget.logoutCallback();
-    } catch (e) {
-      print(e);
-    }
+    exit(0);
   }
 
   @override
@@ -69,11 +65,10 @@ return Scaffold(
                padding: EdgeInsets.all(20), 
               ),
 
-              Image.network( 
-                'https://2nd-page.de/wp-content/uploads/2018/11/cropped-Bild1-Holz-21.gif',
-                height: 200, 
-                width: 500,
+              Text( 
+                "Recent Scans go here",
               ),
+              
 
               Padding( 
                padding: EdgeInsets.all(80), 

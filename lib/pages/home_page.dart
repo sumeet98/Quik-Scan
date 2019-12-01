@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:quik_scan/services/authentication.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'qr_generator.dart';
 import 'barcode_scanner.dart';
 import 'dart:async';
 import 'package:quik_scan/pages/recent_scans.dart';
 import 'package:quik_scan/pages/about_us.dart';
+import 'dart:io';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -21,24 +24,33 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  final FirebaseDatabase _database = FirebaseDatabase.instance;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-
-  @override
-  void initState() {
-    super.initState();
-
+  signOut() async {
+    exit(0);
   }
 
+  String data = 'Enter data';
+  final controller = TextEditingController();
 
-  signOut() async {
-    try {
-      await widget.auth.signOut();
-      widget.logoutCallback();
-    } catch (e) {
-      print(e);
-    }
+  void generateQR() {
+    setState(() {
+      data = controller.text;
+    });
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('QR code generated'),
+//          actions: <Widget>[
+//            FlatButton(
+//              onPressed: () {
+//
+//              },
+//            )
+//          ]
+        );
+      }
+    );
   }
 
   @override
@@ -60,42 +72,41 @@ class _HomePageState extends State<HomePage> {
           ],
         automaticallyImplyLeading: false,
       ),
-      body:
-
-      Column(  
-        children: <Widget>[  
-
-      FlatButton(
-        color: Colors.indigo,
-        child: Text('Generator placeholder'),
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context) => QRGenerator()
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Padding(
+                  padding: EdgeInsets.all(15)
+              ),
+              QrImage(
+                data: data,
+                version: QrVersions.auto,
+                size: 200.0,
+              ),
+              Spacer(),
+              Text('Enter a string to generate'),
+              Container(
+                padding: EdgeInsets.all(5),
+                width: 300,
+                child: TextField(
+                  controller: controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Enter data',
+                    )
+                ),
+              ),
+              FlatButton(
+                color: Colors.indigo,
+                child: Text('Generate', style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+                onPressed: generateQR
               )
-          );
-        },
-      ), 
-
-      FlatButton(
-        color: Colors.indigo,
-        child: Text('Barcode placeholder'),
-        onPressed: () {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //     builder: (context) => BarcodeScanner()
-          //     )
-          // );
-        },
-      )
-
+            ],
+          ),
         ],
-      ) 
-
-      ); 
-
-    
+      )
+    );
   }
 }
