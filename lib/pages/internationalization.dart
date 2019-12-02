@@ -7,8 +7,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'dart:io';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class Internalization extends StatefulWidget {
-  Internalization({Key key, this.auth, this.userId, this.logoutCallback})
+class Internationalization extends StatefulWidget {
+  Internationalization({Key key, this.auth, this.userId, this.logoutCallback})
       : super(key: key);
 
   final BaseAuth auth;
@@ -16,10 +16,10 @@ class Internalization extends StatefulWidget {
   final String userId;
 
   @override
-  State<StatefulWidget> createState() => new _InternalizationState();
+  State<StatefulWidget> createState() => new _InternationalizationState();
 }
 
-  class _InternalizationState extends State<Internalization> {
+  class _InternationalizationState extends State<Internationalization> {
 
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -41,7 +41,7 @@ class Internalization extends StatefulWidget {
 return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Internalization",
+          "Internationalization",
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.white,
@@ -59,7 +59,7 @@ return Scaffold(
       body: ListView(
         children: <Widget>[  
           ListTile( 
-            title: Text('Internalization', textScaleFactor: 3, textAlign: TextAlign.center,),
+            title: Text('Internationalization', textScaleFactor: 3, textAlign: TextAlign.center,),
           ),
         ], 
       ),
