@@ -45,6 +45,7 @@ class _RegisterState extends State<Register> {
       print(e.toString());
     } finally {
       if (user != null) {
+        notificationNow();
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => BottomNavController()),
