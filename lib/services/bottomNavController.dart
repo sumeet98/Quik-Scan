@@ -27,16 +27,16 @@ class _BottomNavControllerState
     RecentScans(
       key: PageStorageKey('Page2'),
     ),
-    AboutUs(
+    Tables(
       key: PageStorageKey('Page3')
     ),
-    Tables(
+    Geo(
       key: PageStorageKey('Page4')
     ),
-    Geo(
+    Internalization(
       key: PageStorageKey('Page5')
     ),
-    Internalization(
+    AboutUs(
       key: PageStorageKey('Page6')
     )
   ];
@@ -54,13 +54,13 @@ class _BottomNavControllerState
           BottomNavigationBarItem(
               icon: Icon(Icons.list), title: Text('Recent Codes', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_box), title: Text('About Us', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
-          BottomNavigationBarItem(
               icon: Icon(Icons.table_chart), title: Text('Tables', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
               icon: Icon(Icons.place), title: Text('Geo', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.translate), title: Text('Internalization', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo)    
+              icon: Icon(Icons.translate), title: Text('Internalization', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), title: Text('About Us', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),    
         ],
       );
 
