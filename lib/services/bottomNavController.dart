@@ -42,13 +42,13 @@ class _BottomNavControllerState
         currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.code), title: Text('Generator')),
+              icon: Icon(Icons.code), title: Text('Generator', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.list), title: Text('Recent Codes')),
+              icon: Icon(Icons.list), title: Text('Recent Codes', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_box), title: Text('About Us')),
+              icon: Icon(Icons.account_box), title: Text('About Us', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.table_chart), title: Text('Tables'))
+              icon: Icon(Icons.table_chart), title: Text('Tables', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo)
         ],
       );
 
