@@ -5,30 +5,10 @@ import 'package:quik_scan/pages/home_page.dart';
 import 'package:quik_scan/main.dart';
 import 'package:quik_scan/pages/recent_scans.dart';
 import 'package:quik_scan/pages/about_us.dart';
+import 'package:quik_scan/pages/tables.dart';
 
-// class SampleWidget extends StatelessWidget {
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(),
-//       bottomNavigationBar: BottomNavigationBar(
-//         items: [
-//           BottomNavigationBarItem(icon: Icon(Icons.add), title: Text('New')),
-//           BottomNavigationBarItem(
-//               icon: Icon(Icons.list), title: Text('Records')),
-//         ],
-//       ),
-//       body: Container(),
-//     );
-//   }
-// } 
 
 class BottomNavController extends StatefulWidget {
-
- // BottomNavController({Key key, this.title}) : super(key: key);
-
-  //final String title;
 
   @override
   _BottomNavControllerState createState() =>
@@ -48,6 +28,9 @@ class _BottomNavControllerState
     AboutUs(
       key: PageStorageKey('Page3')
     ),
+    Tables(
+      key: PageStorageKey('Page4')
+    ),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -64,6 +47,8 @@ class _BottomNavControllerState
               icon: Icon(Icons.list), title: Text('Recent Codes')),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_box), title: Text('About Us')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.table_chart), title: Text('Tables'))
         ],
       );
 
