@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quik_scan/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:quik_scan/pages/home_page.dart';
-import 'package:quik_scan/pages/login_signup_page.dart';
-import 'package:quik_scan/pages/root_page.dart';
 import 'package:quik_scan/main.dart';
 import 'dart:io';
 
@@ -34,7 +32,7 @@ class RecentScans extends StatefulWidget {
 
 
   signOut() async {
-    exit(0);
+    Navigator.pushReplacementNamed(context, "/logout");
   }
 
   @override

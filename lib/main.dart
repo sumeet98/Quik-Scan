@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quik_scan/services/authentication.dart';
-import 'package:quik_scan/pages/root_page.dart';
+import 'package:quik_scan/pages/login.dart';
 
 void main() {
   runApp(new MyApp());
@@ -15,6 +15,10 @@ class MyApp extends StatelessWidget {
         theme: new ThemeData(
           primarySwatch: Colors.indigo,
         ),
-        home: new RootPage(auth: new Auth()));
+        home: new Login(),
+        routes: {
+        "/logout": (_) => new Login(),
+      },
+    );
   }
 }

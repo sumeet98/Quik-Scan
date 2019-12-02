@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quik_scan/services/authentication.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:quik_scan/pages/login_signup_page.dart';
+import 'login.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:async';
 import 'package:quik_scan/pages/recent_scans.dart';
 import 'package:quik_scan/pages/about_us.dart';
 import 'dart:io';
+
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -22,8 +23,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  //  void notificationNow() {
+   // notifications.sendNotificationsNow('Upgrade to Premium', 'Two weeks left in free trial.', 'payload');
+  //}
+
   signOut() async {
-    exit(0);
+    Navigator.pushReplacementNamed(context, "/logout");
   }
 
   String data = 'Enter data';
