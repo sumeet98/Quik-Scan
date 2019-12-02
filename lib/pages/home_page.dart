@@ -3,8 +3,6 @@ import 'package:quik_scan/services/authentication.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:quik_scan/pages/login_signup_page.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'qr_generator.dart';
-import 'barcode_scanner.dart';
 import 'dart:async';
 import 'package:quik_scan/pages/recent_scans.dart';
 import 'package:quik_scan/pages/about_us.dart';

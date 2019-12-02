@@ -37,4 +37,3 @@ Future<void> _listBarcodes() async {
     print(barcode);
   }
 }
-}
