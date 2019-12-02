@@ -5,6 +5,7 @@ import 'package:quik_scan/pages/home_page.dart';
 import 'package:quik_scan/main.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:io';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class Internalization extends StatefulWidget {
   Internalization({Key key, this.auth, this.userId, this.logoutCallback})
