@@ -72,7 +72,7 @@ return Scaffold(
           ),
           ListTile( 
             title: Text('Liangyu Zhao', textScaleFactor: 2, textAlign: TextAlign.justify,),
-            subtitle: Text('idk yet', textAlign: TextAlign.right,),
+            subtitle: Text('100623172', textAlign: TextAlign.right,),
           ),
           ListTile( 
             title: Text('Sumeet Dhillon', textScaleFactor: 2, textAlign: TextAlign.justify,),
