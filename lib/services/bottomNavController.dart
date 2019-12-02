@@ -59,9 +59,9 @@ class _BottomNavControllerState
         currentIndex: selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt), title: Text('Scanner')),
+              icon: Icon(Icons.code), title: Text('Generator')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.list), title: Text('Recent Scans')),
+              icon: Icon(Icons.list), title: Text('Recent Codes')),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_box), title: Text('About Us')),
         ],
