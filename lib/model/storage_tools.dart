@@ -5,14 +5,12 @@ import 'barcode.dart';
 
 //need to create this tools and value in to
 var _barcodeItem;
-var _barcodeLongitude;
-var _barcodeLatitude;
 var _lastInsertedId = 0;
 final _model = BarcodeModel();
 
 
 Future<void> _addBarcode() async {
-  Barcode newBarcode = Barcode(barcode: _barcodeItem, longitude: _barcodeLongitude, latitude: _barcodeLatitude);
+  Barcode newBarcode = Barcode(barcode: _barcodeItem);
   _lastInsertedId = await _model.insertBarcode(newBarcode);
 }
 
@@ -20,8 +18,6 @@ Future<void> _updateBarcode() async {
   Barcode barcodeToUpdate = Barcode(
       id: _lastInsertedId,
       barcode: _barcodeItem,
-      longitude: _barcodeLongitude,
-      latitude: _barcodeLatitude,
   );
   _model.updateBarcode(barcodeToUpdate);
 }
