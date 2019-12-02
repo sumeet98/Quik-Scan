@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quik_scan/services/bottomNavController.dart';
+import 'package:quik_scan/services/notifications.dart';
 
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -14,6 +15,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+  var notifications = Notifications();
 
 
   @override
@@ -64,9 +66,14 @@ class _RegisterState extends State<Register> {
     }
   }
 
+  void notificationNow() {
+    notifications.sendNotificationsNow('Upgrade to Premium', 'Two weeks left in free trial.', 'payload');
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    notifications.init();
     return Scaffold(
       //resizeToAvoidBottomPadding: false,
       appBar: AppBar(

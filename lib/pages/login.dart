@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quik_scan/services/bottomNavController.dart';
 import 'register.dart';
+import 'package:quik_scan/services/notifications.dart';
 
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -15,6 +16,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+  var notifications = Notifications();
 
 
   @override
@@ -32,30 +34,6 @@ class _LoginState extends State<Login> {
     return await _auth.currentUser();
   }
 
-  void signUpWithEmail() async {
-    // marked async
-    FirebaseUser user;
-    try {
-      user = (await _auth.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      )).user;
-    } catch (e) {
-      print(e.toString());
-    } finally {
-      if (user != null) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => BottomNavController()),
-          );
-        // sign in successful!
-        // ex: bring the user to the home page
-      } else {
-        // sign in unsuccessful
-        // ex: prompt the user to try again
-      }
-    }
-  }
 
   void signInWithEmail() async {
     // marked async
@@ -67,6 +45,7 @@ class _LoginState extends State<Login> {
       print(e.toString());
     } finally {
       if (user != null) {
+        notificationNow();
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => BottomNavController()),
@@ -88,8 +67,13 @@ class _LoginState extends State<Login> {
     }
   }
 
+  void notificationNow() {
+    notifications.sendNotificationsNow('Upgrade to Premium', 'Two weeks left in free trial.', 'payload');
+  }
+
   @override
   Widget build(BuildContext context) {
+    notifications.init();
     return new Scaffold(
       //resizeToAvoidBottomPadding: false,
       appBar: new AppBar(

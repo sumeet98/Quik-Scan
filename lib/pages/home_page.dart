@@ -9,6 +9,7 @@ import 'package:quik_scan/pages/about_us.dart';
 import 'dart:io';
 
 
+
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
       : super(key: key);
@@ -23,9 +24,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  //  void notificationNow() {
-   // notifications.sendNotificationsNow('Upgrade to Premium', 'Two weeks left in free trial.', 'payload');
-  //}
+
 
   signOut() async {
     Navigator.pushReplacementNamed(context, "/logout");
