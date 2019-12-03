@@ -5,6 +5,10 @@ import 'package:quik_scan/pages/home_page.dart';
 import 'package:quik_scan/main.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:io';
+import 'package:geolocator/geolocator.dart';
+import 'package:latlong/latlong.dart';
+import 'package:quik_scan/model/location.dart';
+import 'package:flutter_map/flutter_map.dart';
 
 class Geo extends StatefulWidget {
   Geo({Key key, this.auth, this.userId, this.logoutCallback})
@@ -23,45 +27,135 @@ class Geo extends StatefulWidget {
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
-  @override
-  void initState() {
-    super.initState();
-
-  }
-
+  var centre = LatLng(43.9457842,-78.895896);
+  var path = [LatLng(43.9457842,-78.893896), LatLng(43.9437842,-78.897896), LatLng(43.9457842,-78.895896)];  
+  static Location l1 = new Location('L1', 'L1Address', LatLng(37.7407,-119.513));
+  //static Location l2 = new Location('L2', 'L2Address', LatLng(43.9437842,-78.897896));
+  //static Location l3 = new Location('L3', 'L3Address', LatLng(43.9457842,-78.895896));
+  var locations = [l1];
+  var geolocator = Geolocator();
 
   signOut() async {
    Navigator.pushReplacementNamed(context, "/logout");
   }
 
+  
   @override
-  Widget build(BuildContext context) {
-return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Geolocation",
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-          ),
-        ),
-        actions: <Widget>[
-            new FlatButton(
-                child: new Text('Logout',
-                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-                onPressed: signOut)
-          ],
-        automaticallyImplyLeading: false,
-      ),
-      backgroundColor: Colors.white,
-      body: ListView(
-        children: <Widget>[  
-          ListTile( 
-            title: Text('Geolocation', textScaleFactor: 3, textAlign: TextAlign.center,),
-          ),
-        ], 
-      ),
+  void initState(){
+    calculateCenter();
+    updatePath();
+    super.initState();
+  }
+
+  void calculateCenter(){
+    double lat = 0;
+    double lng = 0;
+    for (int i = 0; i < locations.length; ++i)
+    {
+      lat += locations[i].latlng.latitude;
+      lng += locations[i].latlng.longitude;
+    }
+    lat /= locations.length;
+    lng /= locations.length;
+
+    centre = LatLng(lat, lng);
+  }
+
+  void updatePath(){
+    path.clear();
+    for (int i = 0; i < locations.length; ++i)
+    {
+      path.add(locations[i].latlng);
+    }
+  }
+
+  List<Marker> addMarkers()
+  {
+    List<Marker> markers = new List<Marker>();
+    for (int i = 0; i < locations.length; ++i)
+    {
+      markers.add(new Marker(
+                width: 60.0,
+                height: 60.0,
+                point: locations[i].latlng,
+                builder: (context) => IconButton(
+                    icon: Icon(Icons.adjust),
+                    color: Colors.blue,
+                    iconSize: 45.0,
+                    onPressed: () {
+                      print('Icon clicked');
+                    },
+                  ),
+                
+              ));
+    }
+    return markers;
+  }
+
+  void addLocation(){
+    
+    geolocator.checkGeolocationPermissionStatus().then((GeolocationStatus geolocationStatus) {
+    print('Got permission');
+    });
+    geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+      .then((userLocation) {
+        geolocator.placemarkFromCoordinates(userLocation.latitude, userLocation.longitude).then((List<Placemark> places) {
+          for (Placemark place in places)
+          {
+            Location newLoc = new Location(place.name, place.subThoroughfare + ' ' + place.thoroughfare, LatLng(userLocation.latitude, userLocation.longitude));
+            locations.add(newLoc);
+            print('\t${place.name}, ${place.subThoroughfare}, ${place.thoroughfare}, ${place.locality}, ${place.subAdministrativeArea}');
+            setState(() {
+              calculateCenter();
+              updatePath();
+            });
+          }
+        });
+      }
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FlutterMap(
+        options: MapOptions(
+          minZoom: 8.0,
+          maxZoom: 48.0,
+          center: centre,
+        ),
+        layers: [
+          TileLayerOptions(
+            /*
+            // for OpenStreetMaps:
+            urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            subdomains: ['a', 'b', 'c'],
+            */
+            ///*
+            // for MapBox:
+            urlTemplate: 'https://api.mapbox.com/styles/v1/rfortier/cjzcobx1x2csf1cmppuyzj5ys/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmZvcnRpZXIiLCJhIjoiY2p6Y282cWV4MDg0ZDNibG9zdWZ6M3YzciJ9.p1ePjCH-zs0RdBbLx40pgQ',
+            additionalOptions: {
+              'accessToken': 'sk.eyJ1IjoiZmZ1dWZnIiwiYSI6ImNrM202N25ndDFjNmkzZXJtdDFvbm9wMTIifQ.i6PKktTZ2QaY0QKp_sFdbQ',
+              'id': 'mapbox.mapbox-streets-v8'
+            }
+            //*/
+          ),
+          MarkerLayerOptions(
+            markers: addMarkers()
+          ),
+          PolylineLayerOptions(
+            polylines: [
+              Polyline(
+                points: path,
+                strokeWidth: 2.0,
+                color: Colors.blue,
+              ),
+            ],
+          ),
+        ],
+      ),
+      //floatingActionButton: IconButton(icon: Icon(Icons.add), onPressed: (){addLocation();}),
+    );
+  }
+
 }

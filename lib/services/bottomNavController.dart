@@ -7,7 +7,7 @@ import 'package:quik_scan/pages/recent_scans.dart';
 import 'package:quik_scan/pages/about_us.dart';
 import 'package:quik_scan/pages/tables.dart';
 import 'package:quik_scan/pages/geolocation.dart';
-import 'package:quik_scan/pages/internalization.dart';
+import 'package:quik_scan/pages/internationalization.dart';
 
 
 class BottomNavController extends StatefulWidget {
@@ -33,7 +33,7 @@ class _BottomNavControllerState
     Geo(
       key: PageStorageKey('Page4')
     ),
-    Internalization(
+    Internationalization(
       key: PageStorageKey('Page5')
     ),
     AboutUs(
@@ -58,7 +58,7 @@ class _BottomNavControllerState
           BottomNavigationBarItem(
               icon: Icon(Icons.place), title: Text('Geo', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.translate), title: Text('Internalization', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
+              icon: Icon(Icons.translate), title: Text('Internationalization', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_box), title: Text('About Us', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),    
         ],
