@@ -5,6 +5,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:quik_scan/pages/home_page.dart';
 import 'package:quik_scan/main.dart';
 import 'dart:io';
+import 'package:quik_scan/model/model.dart';
+import 'home_page.dart';
+import 'package:quik_scan/model/barcode.dart';
 
 class RecentScans extends StatefulWidget {
   RecentScans({Key key, this.auth, this.userId, this.logoutCallback})
@@ -35,6 +38,7 @@ class RecentScans extends StatefulWidget {
     Navigator.pushReplacementNamed(context, "/logout");
   }
 
+  final _model = BarcodeModel();
   @override
   Widget build(BuildContext context) {
 return Scaffold(
@@ -55,24 +59,21 @@ return Scaffold(
         automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white,
-      body: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-
-              Padding( 
-               padding: EdgeInsets.all(20), 
-              ),
-
-              Text( 
-                "Recent Scans go here",
-              ),
-              
-
-              Padding( 
-               padding: EdgeInsets.all(80), 
-              ),
-                ]
-                ),
+      body: FutureBuilder<List<Barcode>>(
+        future: _model.getALLBarcode(),
+        builder: (context, snapshot){
+          if(!snapshot.hasData) return Center (child: CircularProgressIndicator());
+          return ListView(
+            children: snapshot.data.map((barcode)=> ListTile(
+             title:Text(barcode.barcode),
+            )).toList(),
+          );
+        },
+      )
     );
+  }
+  Future<List> _getListBarcode() async {
+    List<Barcode> barcodes = await _model.getALLBarcode();
+    return barcodes;
   }
 }

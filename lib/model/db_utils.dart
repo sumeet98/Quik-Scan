@@ -11,7 +11,7 @@ class DBUtils {
         if (version > 1) {
           // downgrade path
         }
-        db.execute('CREATE TABLE barcode_items(id INTEGER PRIMARY KEY, barcode TEXT, longitude TEXT, latitude TEXT)');
+        db.execute('CREATE TABLE barcode_items(id INTEGER PRIMARY KEY, barcode TEXT)');
       },
       version: 1,
     );
