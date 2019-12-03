@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text('Generate', style: new TextStyle(fontSize: 17.0, color: Colors.white)),
                 onPressed: ()
                 {
-                  generateQR;
+                  generateQR();
                   _addBarcode();
                 }
               )
