@@ -118,6 +118,22 @@ class Geo extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+            appBar: AppBar(
+        title: Text(
+          "Recent Scans",
+          style: TextStyle(
+            fontWeight: FontWeight.w800,
+            color: Colors.white,
+          ),
+        ),
+        actions: <Widget>[
+            new FlatButton(
+                child: new Text('Logout',
+                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+                onPressed: signOut)
+          ],
+        automaticallyImplyLeading: false,
+      ),
       body: FlutterMap(
         options: MapOptions(
           minZoom: 8.0,
