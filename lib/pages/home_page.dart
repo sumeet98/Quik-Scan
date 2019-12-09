@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:quik_scan/services/authentication.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:async';
 import 'package:quik_scan/model/model.dart';
 import 'package:quik_scan/model/barcode.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.auth, this.userId, this.logoutCallback})
+  HomePage({Key key})
       : super(key: key);
 
-  final BaseAuth auth;
-  final VoidCallback logoutCallback;
-  final String userId;
+
 
   @override
   State<StatefulWidget> createState() => new _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  
   signOut() async {
     Navigator.pushReplacementNamed(context, "/logout");
   }

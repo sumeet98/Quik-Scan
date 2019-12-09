@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quik_scan/services/authentication.dart';
-import 'package:quik_scan/pages/home_page.dart';
-import 'package:quik_scan/main.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'dart:io';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class Tables extends StatefulWidget {
-  Tables({Key key, this.auth, this.userId, this.logoutCallback})
+  Tables({Key key})
       : super(key: key);
-
-  final BaseAuth auth;
-  final VoidCallback logoutCallback;
-  final String userId;
 
 
   @override
@@ -22,8 +12,6 @@ class Tables extends StatefulWidget {
 
   class _TablesState extends State<Tables> {
 
-  final FirebaseDatabase _database = FirebaseDatabase.instance;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
    Widget chartContainer = Column(  
    mainAxisAlignment: MainAxisAlignment.center  
  );

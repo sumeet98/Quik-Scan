@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quik_scan/services/authentication.dart';
-import 'package:quik_scan/pages/home_page.dart';
-import 'package:quik_scan/main.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'dart:io';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong/latlong.dart';
 import 'package:quik_scan/model/location.dart';
 import 'package:flutter_map/flutter_map.dart';
 
 class Geo extends StatefulWidget {
-  Geo({Key key, this.auth, this.userId, this.logoutCallback})
+  Geo({Key key, })
       : super(key: key);
 
-  final BaseAuth auth;
-  final VoidCallback logoutCallback;
-  final String userId;
 
   @override
   State<StatefulWidget> createState() => new _GeoState();
@@ -24,14 +15,9 @@ class Geo extends StatefulWidget {
 
   class _GeoState extends State<Geo> {
 
-  final FirebaseDatabase _database = FirebaseDatabase.instance;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   var centre = LatLng(43.9457842,-78.895896);
   var path = [LatLng(43.9457842,-78.893896), LatLng(43.9437842,-78.897896), LatLng(43.9457842,-78.895896)];  
   static Location l1 = new Location('L1', 'L1Address', LatLng(37.7407,-119.513));
-  //static Location l2 = new Location('L2', 'L2Address', LatLng(43.9437842,-78.897896));
-  //static Location l3 = new Location('L3', 'L3Address', LatLng(43.9457842,-78.895896));
   var locations = [l1];
   var geolocator = Geolocator();
 
@@ -142,19 +128,12 @@ class Geo extends StatefulWidget {
         ),
         layers: [
           TileLayerOptions(
-            /*
-            // for OpenStreetMaps:
-            urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            subdomains: ['a', 'b', 'c'],
-            */
-            ///*
-            // for MapBox:
+
             urlTemplate: 'https://api.mapbox.com/styles/v1/rfortier/cjzcobx1x2csf1cmppuyzj5ys/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmZvcnRpZXIiLCJhIjoiY2p6Y282cWV4MDg0ZDNibG9zdWZ6M3YzciJ9.p1ePjCH-zs0RdBbLx40pgQ',
             additionalOptions: {
               'accessToken': 'sk.eyJ1IjoiZmZ1dWZnIiwiYSI6ImNrM202N25ndDFjNmkzZXJtdDFvbm9wMTIifQ.i6PKktTZ2QaY0QKp_sFdbQ',
               'id': 'mapbox.mapbox-streets-v8'
             }
-            //*/
           ),
           MarkerLayerOptions(
             markers: addMarkers()

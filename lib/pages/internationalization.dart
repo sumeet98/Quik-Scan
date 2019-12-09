@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quik_scan/services/authentication.dart';
-import 'package:quik_scan/pages/home_page.dart';
-import 'package:quik_scan/main.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'dart:io';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class Internationalization extends StatefulWidget {
-  Internationalization({Key key, this.auth, this.userId, this.logoutCallback})
+  Internationalization({Key key})
       : super(key: key);
 
-  final BaseAuth auth;
-  final VoidCallback logoutCallback;
-  final String userId;
 
   @override
   State<StatefulWidget> createState() => new _InternationalizationState();
@@ -21,8 +11,6 @@ class Internationalization extends StatefulWidget {
 
   class _InternationalizationState extends State<Internationalization> {
 
-  final FirebaseDatabase _database = FirebaseDatabase.instance;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 
   @override

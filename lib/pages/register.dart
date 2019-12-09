@@ -22,10 +22,6 @@ class _RegisterState extends State<Register> {
   void initState() {
     super.initState();
     getUser().then((user) {
-      if (user != null) {
-        // send the user to the home page
-        // homePage();
-      }
     });
   }
 
@@ -34,7 +30,6 @@ class _RegisterState extends State<Register> {
   }
 
   void signUpWithEmail() async {
-    // marked async
     FirebaseUser user;
     try {
       user = (await _auth.createUserWithEmailAndPassword(
@@ -51,7 +46,6 @@ class _RegisterState extends State<Register> {
             MaterialPageRoute(builder: (context) => BottomNavController()),
           );
         // sign in successful!
-        // ex: bring the user to the home page
       } else {
     showDialog(
       context: context,
@@ -62,7 +56,6 @@ class _RegisterState extends State<Register> {
       }
     );
         // sign in unsuccessful
-        // ex: prompt the user to try again
       }
     }
   }
@@ -76,7 +69,6 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     notifications.init();
     return Scaffold(
-      //resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('Register'),
         backgroundColor: Colors.indigo,

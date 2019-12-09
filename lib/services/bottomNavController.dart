@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quik_scan/services/authentication.dart';
 import 'package:quik_scan/pages/home_page.dart';
-import 'package:quik_scan/main.dart';
 import 'package:quik_scan/pages/recent_scans.dart';
 import 'package:quik_scan/pages/about_us.dart';
 import 'package:quik_scan/pages/tables.dart';

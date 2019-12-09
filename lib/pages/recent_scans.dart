@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:quik_scan/services/authentication.dart';
 import 'package:quik_scan/model/model.dart';
 import 'package:quik_scan/model/barcode.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class RecentScans extends StatefulWidget {
-  RecentScans({Key key, this.auth, this.userId, this.logoutCallback})
+  RecentScans({Key key})
       : super(key: key);
 
-  final BaseAuth auth;
-  final VoidCallback logoutCallback;
-  final String userId;
 
   @override
   State<StatefulWidget> createState() => new _RecentScansState();

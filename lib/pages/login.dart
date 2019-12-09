@@ -23,10 +23,6 @@ class _LoginState extends State<Login> {
   void initState() {
     super.initState();
     getUser().then((user) {
-      if (user != null) {
-        // send the user to the home page
-        // homePage();
-      }
     });
   }
 
@@ -36,7 +32,6 @@ class _LoginState extends State<Login> {
 
 
   void signInWithEmail() async {
-    // marked async
     FirebaseUser user;
     try {
       user = (await _auth.signInWithEmailAndPassword(
@@ -51,7 +46,6 @@ class _LoginState extends State<Login> {
             MaterialPageRoute(builder: (context) => BottomNavController()),
           );
         // sign in successful!
-        // ex: bring the user to the home page
       } else {
     showDialog(
       context: context,
@@ -62,7 +56,6 @@ class _LoginState extends State<Login> {
       }
     );
         // sign in unsuccessful
-        // ex: prompt the user to try again
       }
     }
   }
@@ -75,7 +68,6 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     notifications.init();
     return new Scaffold(
-      //resizeToAvoidBottomPadding: false,
       appBar: new AppBar(
         title: new Text('Login'),
         backgroundColor: Colors.indigo,
