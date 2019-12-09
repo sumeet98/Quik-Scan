@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quik_scan/services/authentication.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'login.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'dart:async';
-import 'package:quik_scan/pages/recent_scans.dart';
-import 'package:quik_scan/pages/about_us.dart';
-import 'dart:io';
 import 'package:quik_scan/model/model.dart';
 import 'package:quik_scan/model/barcode.dart';
-
-
-final _model = BarcodeModel();
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -26,16 +18,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
-
-
   signOut() async {
     Navigator.pushReplacementNamed(context, "/logout");
   }
-
-  String data = 'Enter data';
-  final controller = TextEditingController();
 
   void generateQR() {
     setState(() {
@@ -46,21 +31,22 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('QR code generated'),
-//          actions: <Widget>[
-//            FlatButton(
-//              onPressed: () {
-//
-//              },
-//            )
-//          ]
+          title: Text('QR code generated')
         );
       }
     );
   }
+
+  Future<void> _addBarcode() async {
+    Barcode newBarcode = Barcode(barcode: _barcodeItem);
+    _lastInsertedId = await _model.insertBarcode(newBarcode);
+  }
+
+  String data = 'Enter data';
   var _barcodeItem;
   var _lastInsertedId = 0;
   final _model = BarcodeModel();
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.all(5),
                 width: 300,
                 child: TextField(
-                  onChanged: (newValue){
+                  onChanged: (newValue) {
                     _barcodeItem = newValue;
                   },
                   controller: controller,
@@ -113,8 +99,7 @@ class _HomePageState extends State<HomePage> {
               FlatButton(
                 color: Colors.indigo,
                 child: Text('Generate', style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-                onPressed: ()
-                {
+                onPressed: () {
                   generateQR();
                   _addBarcode();
                 }
@@ -124,34 +109,5 @@ class _HomePageState extends State<HomePage> {
         ],
       )
     );
-  }
-  Future<void> _addBarcode() async {
-    Barcode newBarcode = Barcode(barcode: _barcodeItem);
-    _lastInsertedId = await _model.insertBarcode(newBarcode);
-  }
-
-  Future<void> _updateBarcode() async {
-    Barcode barcodeToUpdate = Barcode(
-      id: _lastInsertedId,
-      barcode: _barcodeItem,
-    );
-    _model.updateBarcode(barcodeToUpdate);
-  }
-
-  Future<void> _deleteBarcode() async {
-    _model.deleteBarcode(_lastInsertedId);
-  }
-
-  Future<void> _listBarcodes() async {
-    List<Barcode> barcodes = await _model.getALLBarcode();
-    print('To Dos:');
-    for (Barcode barcode in barcodes) {
-      print(barcode);
-    }
-  }
-
-  Future<List> _getListBarcode() async {
-    List<Barcode> barcodes = await _model.getALLBarcode();
-    return barcodes;
   }
 }
