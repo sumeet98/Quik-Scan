@@ -36,11 +36,11 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   qr_flutter: ^3.1.0
-  barcode_scan: ^1.0.0
   image_picker: ^0.6.1+11
   geolocator:
   latlong:
   flutter_map:
+  barcode_scan: "^1.0.0"
 
 
 dev_dependencies:
