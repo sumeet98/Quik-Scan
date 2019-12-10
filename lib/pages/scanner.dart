@@ -19,7 +19,7 @@ class _ScannerState extends State<Scanner> {
     Navigator.pushReplacementNamed(context, "/logout");
   }
 
-    String _result = "Lets start to scan";
+    String _result = "Let's start to scan";
 
   Future _scanQr() async {
     debugPrint("scan touched");
@@ -35,12 +35,12 @@ class _ScannerState extends State<Scanner> {
           });
         }else{
           setState(() {
-            _result = "unknown error ocurred $ex";
+            _result = "Unknown error ocurred $ex";
           });
         }
     }on FormatException{
       setState(() {
-        _result = "Scan canceled, try again !";
+        _result = "Scan cancelled, try again!";
       });
     }catch(e){
       _result = "Unknown error $e";
@@ -58,7 +58,7 @@ class _ScannerState extends State<Scanner> {
         child: Text(_result),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.indigo,
         onPressed: _scanQr,
         icon: Icon(Icons.camera_alt),
         label: Text("Scan"),

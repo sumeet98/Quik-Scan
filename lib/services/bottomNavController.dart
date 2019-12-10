@@ -63,7 +63,7 @@ class _BottomNavControllerState
           BottomNavigationBarItem(
               icon: Icon(Icons.account_box), title: Text('About Us', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.scanner), title: Text('Scanner', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),    
+              icon: Icon(Icons.camera_alt), title: Text('Scanner', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),    
         ],
       );
 
