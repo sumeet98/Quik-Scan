@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:quik_scan/model/qr.dart';
+import 'dart:math';
 
 class Scanner extends StatefulWidget {
   Scanner({Key key})
@@ -17,14 +19,16 @@ class _ScannerState extends State<Scanner> {
     Navigator.pushReplacementNamed(context, "/logout");
   }
 
-  String _result = "Let's start to scan";
+  String _result = "Press scan to start scanning";
+  var rnd = new Random();
 
   Future _scanQr() async {
-    debugPrint("scan touched");
     try {
       String qrResult = await BarcodeScanner.scan();
       setState(() {
         _result = qrResult;
+        Qr newEntry = Qr(sid: rnd.nextInt(900000) + 100000, qr: _result);
+        Navigator.pushNamed(context, '/recentscans', arguments: newEntry);
       });
     } on PlatformException catch(ex){
       if(ex.code == BarcodeScanner.CameraAccessDenied){
@@ -62,6 +66,7 @@ class _ScannerState extends State<Scanner> {
                   style: new TextStyle(fontSize: 17.0, color: Colors.white)),
               onPressed: signOut)
         ],
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Text(_result),

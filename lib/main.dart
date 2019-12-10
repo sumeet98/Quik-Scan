@@ -3,6 +3,7 @@ import 'package:quik_scan/pages/about_us.dart';
 import 'package:quik_scan/pages/geolocation.dart';
 import 'package:quik_scan/pages/internationalization.dart';
 import 'package:quik_scan/pages/login.dart';
+import 'package:quik_scan/pages/recent_scans.dart';
 import 'package:quik_scan/pages/settings.dart';
 import 'package:quik_scan/pages/tables.dart';
 
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         "/geo": (_) => new Geo(),
         "/inter": (_) => new Internationalization(),
         "/about": (_) => new AboutUs(),
-        "/settings": (_) => new Settings()
+        "/settings": (_) => new Settings(),
+        "/recentscans": (_) => new RecentScans(),
       },
     );
   }

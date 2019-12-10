@@ -38,7 +38,20 @@ class _SettingsState extends State<Settings> {
           ],
         ),
         backgroundColor: Colors.white,
-        body: Text("settings")
+        body: Column( 
+          children: <Widget>[
+          Padding( 
+              padding: EdgeInsets.all(10),
+            ),  
+          Text("App Version: 1.0", style: TextStyle( fontSize: 17.0, color: Colors.indigo)
+          ),
+          Padding( 
+              padding: EdgeInsets.all(10),
+          ),
+          Text('© 2019 Quik Scan', style: TextStyle( fontSize: 17.0, color: Colors.indigo),
+          )
+          ]
+        )
     );
   }
 }

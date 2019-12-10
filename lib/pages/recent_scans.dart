@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quik_scan/model/model.dart';
+import 'package:quik_scan/model/qr_model.dart';
+import 'package:quik_scan/model/qr.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class RecentScans extends StatefulWidget {
   RecentScans({Key key})
@@ -21,10 +24,26 @@ class _RecentScansState extends State<RecentScans> {
     Navigator.pushReplacementNamed(context, "/logout");
   }
 
-  final _model = BarcodeModel();
+  List<Qr> dataList = new List();
+
+  Widget makeDataTile(BuildContext context, Qr entry, int index){ 
+    int sid = entry.sid;
+    String qr = entry.qr;
+  
+  return GestureDetector( 
+    child: Container( 
+      child: ListTile( 
+        title: Text('$sid'),
+        subtitle: Text('$qr')
+      )
+    )
+  );
+  }
 
   @override
   Widget build(BuildContext context) {
+    int index = 0; 
+    dataList = new List();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -43,7 +62,24 @@ class _RecentScansState extends State<RecentScans> {
         automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white,
-      body: Text("Recent Scans"),
-    );
+      body: StreamBuilder<QuerySnapshot>( 
+        stream: Firestore.instance.collection('qrs').snapshots(),
+        builder: (context, snapshot) { 
+          if (!snapshot.hasData){ 
+            return LinearProgressIndicator();
+          }
+
+          return ListView(  
+            padding: const EdgeInsets.all(16.0),
+            children: snapshot.data.documents.map((data) { 
+              final entry = Qr.fromMap(data.data, reference: data.reference);
+              dataList.add(entry);
+              Widget tile = makeDataTile(context,entry,index);
+              index++;
+              return tile;
+            }).toList(),
+          );
+        }
+    ));
   }
 }
