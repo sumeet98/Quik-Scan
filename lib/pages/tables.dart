@@ -46,7 +46,6 @@ return Scaffold(
                     style: new TextStyle(fontSize: 17.0, color: Colors.white)),
                 onPressed: signOut)
           ],
-        automaticallyImplyLeading: false,
       ),
       backgroundColor: Colors.white,
      body: SingleChildScrollView(  

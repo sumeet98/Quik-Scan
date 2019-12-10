@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quik_scan/pages/home_page.dart';
-import 'package:quik_scan/pages/recent_scans.dart';
-import 'package:quik_scan/pages/about_us.dart';
-import 'package:quik_scan/pages/tables.dart';
-import 'package:quik_scan/pages/geolocation.dart';
-import 'package:quik_scan/pages/internationalization.dart';
+import 'package:quik_scan/pages/recent_qrs.dart';
 import 'package:quik_scan/pages/scanner.dart';
+import 'package:quik_scan/pages/recent_scans.dart';
 
 
 class BottomNavController extends StatefulWidget {
@@ -22,24 +19,16 @@ class _BottomNavControllerState
     HomePage(
       key: PageStorageKey('Page1'),
     ),
-    RecentScans(
+    RecentQrs(
       key: PageStorageKey('Page2'),
     ),
-    Tables(
+    Scanner(
       key: PageStorageKey('Page3')
     ),
-    Geo(
+    RecentScans( 
       key: PageStorageKey('Page4')
     ),
-    Internationalization(
-      key: PageStorageKey('Page5')
-    ),
-    AboutUs(
-      key: PageStorageKey('Page6')
-    ),
-    Scanner(
-      key: PageStorageKey('Page7')
-    )
+
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -53,17 +42,11 @@ class _BottomNavControllerState
           BottomNavigationBarItem(
               icon: Icon(Icons.code), title: Text('Generator', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.list), title: Text('Recent Codes', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
+              icon: Icon(Icons.playlist_add), title: Text('Recent QRs', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
           BottomNavigationBarItem(
-              icon: Icon(Icons.table_chart), title: Text('Tables', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
+              icon: Icon(Icons.camera_alt), title: Text('Scanner', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),   
           BottomNavigationBarItem(
-              icon: Icon(Icons.place), title: Text('Geo', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.translate), title: Text('Internationalization', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_box), title: Text('About Us', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt), title: Text('Scanner', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo),    
+              icon: Icon(Icons.list), title: Text('Recent Scans', style: TextStyle(color: Colors.white),), backgroundColor: Colors.indigo), 
         ],
       );
 

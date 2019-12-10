@@ -63,7 +63,44 @@ class _HomePageState extends State<HomePage> {
                     style: new TextStyle(fontSize: 17.0, color: Colors.white)),
                 onPressed: signOut)
           ],
-        automaticallyImplyLeading: false,
+       // automaticallyImplyLeading: false,
+      ),
+      drawer: new Drawer( 
+        child: new ListView(  
+          children: <Widget>[  
+            new ListTile(  
+              title: new Text("Tables"),
+              trailing: new Icon(Icons.table_chart),
+              onTap: () => Navigator.of(context).pushNamed("/tables"),
+            ), 
+            new ListTile(  
+              title: new Text("Geolocation"),
+              trailing: new Icon(Icons.place),
+              onTap: () => Navigator.of(context).pushNamed("/geo"),
+            ),
+            new ListTile(  
+              title: new Text("Internationalization"),
+              trailing: new Icon(Icons.translate),
+              onTap: () => Navigator.of(context).pushNamed("/inter"),
+            ),
+            new ListTile(  
+              title: new Text("About Us"),
+              trailing: new Icon(Icons.account_box),
+              onTap: () => Navigator.of(context).pushNamed("/about"),
+            ),
+            new ListTile(  
+              title: new Text("Settings"),
+              trailing: new Icon(Icons.settings),
+              onTap: () => Navigator.of(context).pushNamed("/settings"),
+            ),
+            new Divider(), 
+            new ListTile(  
+              title: new Text("Close"),
+              trailing: new Icon(Icons.close),
+              onTap: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ),
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -106,7 +106,7 @@ class Geo extends StatefulWidget {
     return Scaffold(
             appBar: AppBar(
         title: Text(
-          "Recent Scans",
+          "Geolocation",
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.white,
@@ -118,7 +118,6 @@ class Geo extends StatefulWidget {
                     style: new TextStyle(fontSize: 17.0, color: Colors.white)),
                 onPressed: signOut)
           ],
-        automaticallyImplyLeading: false,
       ),
       body: FlutterMap(
         options: MapOptions(

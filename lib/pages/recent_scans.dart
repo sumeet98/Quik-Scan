@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quik_scan/model/model.dart';
-import 'package:quik_scan/model/barcode.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+
 
 class RecentScans extends StatefulWidget {
   RecentScans({Key key})
@@ -46,24 +45,7 @@ class _RecentScansState extends State<RecentScans> {
           automaticallyImplyLeading: false,
         ),
         backgroundColor: Colors.white,
-        body: FutureBuilder<List<Barcode>>(
-          future: _model.getALLBarcode(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData)
-              return Center(child: CircularProgressIndicator());
-            return ListView(
-              children: snapshot.data.reversed.map((barcode) =>
-                  ListTile(
-                    leading: QrImage(
-                      data: barcode.barcode,
-                      version: QrVersions.auto,
-                      size: 100.0,
-                    ),
-                    title: Text(barcode.barcode),
-                  ))
-                  .toList(),
-            );
-          },
-        ));
+        body: Text("Recent Scans"),
+        );
   }
 }
