@@ -5,7 +5,6 @@ import 'package:quik_scan/services/bottomNavController.dart';
 import 'register.dart';
 import 'package:quik_scan/services/notifications.dart';
 
-
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class Login extends StatefulWidget {
@@ -18,7 +17,6 @@ class _LoginState extends State<Login> {
   TextEditingController passwordController = new TextEditingController();
   var notifications = Notifications();
 
-
   @override
   void initState() {
     super.initState();
@@ -30,7 +28,6 @@ class _LoginState extends State<Login> {
     return await _auth.currentUser();
   }
 
-
   void signInWithEmail() async {
     FirebaseUser user;
     try {
@@ -41,20 +38,20 @@ class _LoginState extends State<Login> {
     } finally {
       if (user != null) {
         notificationNow();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => BottomNavController()),
-          );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BottomNavController()),
+        );
         // sign in successful!
       } else {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Invalid Information Try Again'),
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text('Invalid Information Try Again'),
+              );
+            }
         );
-      }
-    );
         // sign in unsuccessful
       }
     }
@@ -76,85 +73,85 @@ class _LoginState extends State<Login> {
       body: Container(
         color: Colors.white,
         child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8.0,
-            horizontal: 32.0,
-          ),
-          child: Column(
-            children: [
-              Padding( 
-                padding: EdgeInsets.all(20),
-              ),
-               Image.network( 
-                'https://cdn2.iconfinder.com/data/icons/antivirus-internet-security/33/quick_scan-512.png',
-                height: 100, 
-                width: 200,
-              ),
-              Padding( 
-                padding: EdgeInsets.all(80),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Enter Email',
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: "Enter Password",
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Builder(
-                  builder: (context) {
-                    return RaisedButton(
-                      onPressed: () => signInWithEmail(),
-                      color: Colors.indigo,
-                      textColor: Colors.white,
-                      child: Text('Login'),
-                    );
-                  },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 32.0,
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(20),
                 ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(
-                  "New User? Register Below",
-                  style:TextStyle(color: Colors.grey[700],
-                  fontWeight: FontWeight.w500, 
-                  fontSize: 18),
-                    )
+                Image.network(
+                  'https://cdn2.iconfinder.com/data/icons/antivirus-internet-security/33/quick_scan-512.png',
+                  height: 100,
+                  width: 200,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(80),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Enter Email',
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: "Enter Password",
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Builder(
+                    builder: (context) {
+                      return RaisedButton(
+                        onPressed: () => signInWithEmail(),
+                        color: Colors.indigo,
+                        textColor: Colors.white,
+                        child: Text('Login'),
+                      );
+                    },
                   ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Builder(
-                  builder: (context) {
-                    return RaisedButton(
-                      onPressed: () => 
-                       Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Register()),
-                       ),
-                      color: Colors.indigo,
-                      textColor: Colors.white,
-                      child: Text('Register'),
-                    );
-                  },
                 ),
-              ),
-            ],
+
+                Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      "New User? Register Below",
+                      style:TextStyle(color: Colors.grey[700],
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18),
+                    )
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Builder(
+                    builder: (context) {
+                      return RaisedButton(
+                        onPressed: () =>
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Register()),
+                            ),
+                        color: Colors.indigo,
+                        textColor: Colors.white,
+                        child: Text('Register'),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
       ),
     );
   }

@@ -12,27 +12,27 @@ class Notifications {
   void init() {
     var initializationSettingsAndroid = new AndroidInitializationSettings('mipmap/ic_launcher');
     var initializationSettingsIOS = new IOSInitializationSettings(
-      onDidReceiveLocalNotification: (int id, String title, String body, String payload) { return null; }
+        onDidReceiveLocalNotification: (int id, String title, String body, String payload) { return null; }
     );
     var initializationSettings = new InitializationSettings(initializationSettingsAndroid, initializationSettingsIOS);
     flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-      onSelectNotification: onSelectNotification
+        initializationSettings,
+        onSelectNotification: onSelectNotification
     );
 
     var androidPlatformChannelInfo = AndroidNotificationDetails(
-      channelID,
-      channelName,
-      channelDescription,
-      importance: Importance.Max,
-      priority: Priority.High,
-      ticker: 'ticker'
+        channelID,
+        channelName,
+        channelDescription,
+        importance: Importance.Max,
+        priority: Priority.High,
+        ticker: 'ticker'
     );
 
     var iOSPlatformChannelInfo = IOSNotificationDetails();
     platformChannelInfo = NotificationDetails(
-      androidPlatformChannelInfo,
-      iOSPlatformChannelInfo
+        androidPlatformChannelInfo,
+        iOSPlatformChannelInfo
     );
 
   }
@@ -46,27 +46,27 @@ class Notifications {
 
   Future<void> sendNotificationsNow(String title, String body, String payload) async {
     flutterLocalNotificationsPlugin.show(
-      notificationID++,
-      title,
-      body,
-      platformChannelInfo,
-      payload: payload
+        notificationID++,
+        title,
+        body,
+        platformChannelInfo,
+        payload: payload
     );
   }
 
   Future<void> sendNotificationsWhen(String title, String body, DateTime when, String payload) async {
     flutterLocalNotificationsPlugin.schedule(
-      notificationID++,
-      title,
-      body,
-      when,
-      platformChannelInfo,
-      payload: payload
+        notificationID++,
+        title,
+        body,
+        when,
+        platformChannelInfo,
+        payload: payload
     );
   }
 
   Future<List<PendingNotificationRequest>> getPendingNotificationRequests() async {
     return flutterLocalNotificationsPlugin.pendingNotificationRequests();
   }
-  
+
 }
