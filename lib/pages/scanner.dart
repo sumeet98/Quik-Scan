@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:quik_scan/model/qr.dart';
 import 'dart:math';
+import 'package:quik_scan/model/qr_model.dart';
 
 class Scanner extends StatefulWidget {
   Scanner({Key key})
@@ -28,6 +29,7 @@ class _ScannerState extends State<Scanner> {
       setState(() {
         _result = qrResult;
         Qr newEntry = Qr(sid: rnd.nextInt(900000) + 100000, qr: _result);
+        QrModel.insert(newEntry);
         Navigator.pushNamed(context, '/recentscans', arguments: newEntry);
       });
     } on PlatformException catch(ex){
