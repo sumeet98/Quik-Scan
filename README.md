@@ -2,15 +2,14 @@
 
 A new Flutter project.
 
-## Getting Started
+# Created By: 
 
-This project is a starting point for a Flutter application.
+Brandon Campbell 100555879
 
-A few resources to get you started if this is your first Flutter project:
+Gage Adam 100616044
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Liyangyu Zhao 100623172
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Sumeet Dhillon 100615629
+
+Zain Ansari 100586120
