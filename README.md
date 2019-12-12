@@ -1,6 +1,17 @@
 # quik_scan
 
-A new Flutter project.
+A QR code generator and scanner. 
+
+Features include: 
+
+Local storage of QRs generated
+
+Cloud storage of QRs/Barcodes scanned
+
+Geolocation
+
+Internationalization
+
 
 # Created By: 
 
